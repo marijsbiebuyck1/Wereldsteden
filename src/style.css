@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sigmar+One&display=swap');
+
+:root {
+  --swiper-navigation-color: white;
+  --swiper-pagination-color: white;
+}
+
+.swiper {
+  width: 100vw;
+  height: 100vh;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: auto; /* Zorgt dat de slide zich aanpast aan de inhoud */
+  position: relative; /* Voorkomt dat de tekst per ongeluk verborgen wordt */ 
+  overflow: visible !important;
+  z-index: 100;
+}
+
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.swiper-slide p {
+  position: absolute;
+  bottom: 30px; /* Positioning from the bottom */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Centering adjustment */
+  color: white; /* Text color */
+  padding: 5px; /* Padding for better readability */
+  border-radius: 5px; /* Rounded corners */
+  font-family: "Sigmar One", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4rem;
+  z-index:10;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #FFFF !important; /* Change to desired color */
+  position: absolute; /* Positioning */
+  top: 50v; /* Center vertically */ /* Center adjustment */
+  z-index: 10; /* Ensure they are above other elements */
+}
+.swiper-button-prev {
+  left: 10px; /* Position to the left */
+}
+.swiper-button-next {
+  right: 10px; /* Position to the right */
+}
+
+.weather-temp {
+  font-size: 2rem; /* Maak de tekst groter */
+  font-weight: bold; /* Zet de temperatuur vetgedrukt */
+  color: white; /* Kies een opvallende kleur zoals oranje of rood */
+  padding: 10px 15px; /* Voeg wat ruimte rondom de tekst toe */
+  border-radius: 8px; /* Maak de hoeken van de achtergrond afgerond */
+  margin-top: 10px; /* Geef wat ruimte boven de temperatuur */
+  display: block; /* Zorgt ervoor dat de temperatuur op een nieuwe regel komt */
+  font-family: "Open Sans", serif;
+}
+
+
+.city-newyork { color: red; } 
+.city-buenosaires { color: blue; }
+.city-london { color: green; }
+.city-kaapstad { color: orange; }
+.city-tokyo { color: purple; }
+
+
