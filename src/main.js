@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 import { API_KEY } from "./secret.js";
 
 // init Swiper:
-const swiper = new Swiper(".swiper", {
+new Swiper(".swiper", {
   // configure Swiper to use modules
   modules: [Navigation, Pagination],
 
