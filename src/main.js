@@ -1,48 +1,47 @@
-import './reset.css';
-import './style.css'
+import "./reset.css";
+import "./style.css";
 // core version + navigation, pagination modules:
-import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
+import Swiper from "swiper";
+import { Navigation, Pagination } from "swiper/modules";
 // import Swiper and modules styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import {API_KEY} from './secret.js'
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { API_KEY } from "./secret.js";
 
 // init Swiper:
-const swiper = new Swiper('.swiper', {
+const swiper = new Swiper(".swiper", {
   // configure Swiper to use modules
   modules: [Navigation, Pagination],
 
- // Optional parameters
-  direction: 'horizontal',
+  // Optional parameters
+  direction: "horizontal",
   loop: true,
 
   // If we need pagination
   pagination: {
-    el: '.swiper-pagination',
+    el: ".swiper-pagination",
   },
 
   // Navigation arrows
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
   },
-
 });
 
 const cityColors = {
   "New York": "#eac065",
   "Buenos Aires": "blue",
-  "London": "red",
-  "Kaapstad": "#f5c9a8",
-  "Tokyo": "white"
+  London: "red",
+  Kaapstad: "#f5c9a8",
+  Tokyo: "white",
 };
 
 function applyCityColors() {
   const slides = document.querySelectorAll(".swiper-slide p");
 
-  slides.forEach(slide => {
+  slides.forEach((slide) => {
     const cityName = slide.textContent.trim(); // Haal de stadnaam op uit de <p>-tag
     if (cityColors[cityName]) {
       slide.style.color = cityColors[cityName]; // Pas de kleur toe
@@ -53,11 +52,11 @@ function applyCityColors() {
 applyCityColors();
 
 const cities = [
-  { name: "New York", lat: 40.7128, lon: -74.0060 },
+  { name: "New York", lat: 40.7128, lon: -74.006 },
   { name: "Buenos Aires", lat: -34.6037, lon: -58.3816 },
   { name: "London", lat: 51.5074, lon: -0.1278 },
   { name: "Kaapstad", lat: -33.9249, lon: 18.4241 },
-  { name: "Tokyo", lat: 35.682839, lon: 139.759455 }
+  { name: "Tokyo", lat: 35.682839, lon: 139.759455 },
 ];
 
 function getWeatherIcon(condition) {
@@ -69,11 +68,10 @@ function getWeatherIcon(condition) {
     Thunderstorm: "⛈️",
     Snow: "❄️",
     Mist: "🌫️",
-    Fog: "🌫️"
+    Fog: "🌫️",
   };
   return icons[condition] || "❓"; // Standaard vraagteken als het onbekend is
 }
-
 
 async function getWeather(lat, lon) {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
@@ -90,8 +88,6 @@ async function getWeather(lat, lon) {
   }
 }
 
-
-
 async function updateWeather() {
   const slides = document.querySelectorAll(".swiper-slide p");
 
@@ -101,15 +97,15 @@ async function updateWeather() {
     tempElement.textContent = "⏳"; // Toon een loader totdat de data geladen is
     slides[index].appendChild(tempElement);
 
-    const { temperature, weatherCondition } = await getWeather(city.lat, city.lon);
+    const { temperature, weatherCondition } = await getWeather(
+      city.lat,
+      city.lon,
+    );
     const weatherIcon = getWeatherIcon(weatherCondition);
-    
+
     tempElement.textContent = `${weatherIcon} ${temperature}°C`;
   });
 }
-
-
-
 
 // Roep de functie aan zodra de pagina laadt
 updateWeather();
