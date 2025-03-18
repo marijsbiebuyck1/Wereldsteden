@@ -109,3 +109,4 @@ async function updateWeather() {
 
 // Roep de functie aan zodra de pagina laadt
 updateWeather();
+

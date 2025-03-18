@@ -1,5 +1,5 @@
 {
   "trailingComma": "all",
-  
+  "tabWith": 2,
   "singleQuote": true
 }
