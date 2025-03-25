@@ -24,7 +24,8 @@
   },
   "dependencies": {
     "postcss-preset-env": "^10.1.5",
-    "swiper": "^11.2.2"
+    "swiper": "^11.2.2",
+    "three": "^0.158.0"
   },
   "lint-staged": {
     "*.js": [

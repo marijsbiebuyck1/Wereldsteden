@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sigmar+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sigmar+One&display=swap');
 
 :root {
   --swiper-navigation-color: white;
@@ -8,8 +8,9 @@
 }
 
 .swiper {
-  width: 100vw;
-  height: 100vh;
+  width: 90vw;
+  height: 90vh;
+  border-radius: 20px;
 }
 
 .swiper-slide {
@@ -38,7 +39,7 @@
   color: white; /* Text color */
   padding: 5px; /* Padding for better readability */
   border-radius: 5px; /* Rounded corners */
-  font-family: "Sigmar One", serif;
+  font-family: 'Sigmar One', serif;
   font-weight: 400;
   font-style: normal;
   font-size: 4rem;
@@ -67,7 +68,7 @@
   border-radius: 8px; /* Maak de hoeken van de achtergrond afgerond */
   margin-top: 10px; /* Geef wat ruimte boven de temperatuur */
   display: block; /* Zorgt ervoor dat de temperatuur op een nieuwe regel komt */
-  font-family: "Open Sans", serif;
+  font-family: 'Open Sans', serif;
 }
 
 .city-newyork {
@@ -86,3 +87,23 @@
   color: purple;
 }
 
+/* Zorg ervoor dat de body en html de volledige hoogte hebben */
+html,
+body {
+  height: 100%;
+  margin: 0;
+background-color: #FFE6E8;
+  flex-direction: column; /* Zorgt ervoor dat de pagina verticaal wordt gerangschikt */
+}
+
+.swiper {
+  flex: 1; /* Zorg ervoor dat de swiper de bovenste helft van de pagina vult */
+  z-index: 10; /* Zorgt ervoor dat de swiper boven andere elementen staat */
+}
+
+canvas {
+  width: 100%;
+  height: 100%; /* Adjust to full height of the container */
+
+  z-index: 1; /* Ensure it's behind other content if necessary */
+}
