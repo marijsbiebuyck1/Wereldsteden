@@ -10,7 +10,6 @@ import 'swiper/css/pagination';
 import { API_KEY } from './secret.js';
 import * as THREE from 'three';
 
-
 // init Swiper:
 new Swiper('.swiper', {
   // configure Swiper to use modules
@@ -112,7 +111,6 @@ async function updateWeather() {
 // Roep de functie aan zodra de pagina laadt
 updateWeather();
 
-
 function createGlobe() {
   // Create scene, camera, and renderer
   const scene = new THREE.Scene();
@@ -120,7 +118,7 @@ function createGlobe() {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
-  scene.background = new THREE.Color(0xFFE6E8);
+  scene.background = new THREE.Color(0x00000);
 
   // Create a container for the globe
   const globeContainer = document.createElement('div');
@@ -134,7 +132,8 @@ function createGlobe() {
   document.body.appendChild(globeContainer);
 
   // Create globe
-  const globeGeometry = new THREE.SphereGeometry(5, 32, 32);
+  const radius = 5.1; // Aangepaste radius van de bol
+  const globeGeometry = new THREE.SphereGeometry(3, 32, 32);
   const textureLoader = new THREE.TextureLoader();
   textureLoader.load('public/wereldkaart.jpg', (texture) => {
       const globeMaterial = new THREE.MeshBasicMaterial({ map: texture });
@@ -144,15 +143,6 @@ function createGlobe() {
 
   // Position camera
   camera.position.z = 10;
-
-  // City data
-  const cities = [
-      { name: 'New York', lat: 40.7128, lon: -74.006 },
-      { name: 'Buenos Aires', lat: -34.6037, lon: -58.3816 },
-      { name: 'London', lat: 51.5074, lon: -0.1278 },
-      { name: 'Kaapstad', lat: -33.9249, lon: 18.4241 },
-      { name: 'Tokyo', lat: 35.682839, lon: 139.759455 }
-  ];
 
   // Function to convert lat/lon to 3D coordinates on a sphere
   function latLonToVector3(lat, lon, radius = 5.1) {
@@ -172,12 +162,12 @@ function createGlobe() {
 
       for (const city of cities) {
           // Create pin
-          const pinGeometry = new THREE.SphereGeometry(0.1, 16, 16);
+          const pinGeometry = new THREE.SphereGeometry(0.1, 16, 16); // Pin grootte kan je aanpassen
           const pinMaterial = new THREE.MeshBasicMaterial({ color: 0xADD8E6 });
           const pin = new THREE.Mesh(pinGeometry, pinMaterial);
 
           // Position pin
-          const position = latLonToVector3(city.lat, city.lon);
+          const position = latLonToVector3(city.lat, city.lon, 3);  // Gebruik hier de radius
           pin.position.copy(position);
           cityPinGroup.add(pin);
 
@@ -191,7 +181,7 @@ function createGlobe() {
           canvas.height = 128;
           context.fillStyle = 'rgba(255,255,255,0.8)';
           context.fillRect(0, 0, canvas.width, canvas.height);
-          context.font = 'Bold 20px Arial';
+          context.font = 'Bold 30px Arial';
           context.fillStyle = 'black';
           context.fillText(`${city.name}`, 10, 50);
           context.fillText(`${weatherData.temperature}°C`, 10, 80);
@@ -232,7 +222,6 @@ function createGlobe() {
 
 // Call the globe creation function when the page loads
 window.addEventListener('load', createGlobe);
-
 
 // Zoek het element van de wereldbol
 const globeContainer = document.getElementById('globe-container');
